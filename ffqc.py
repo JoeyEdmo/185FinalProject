@@ -11,6 +11,7 @@ import os
 import Bio
 import sys
 import parseArgs
+import quality
 
 def main():
 	parser = argparse.ArgumentParser(
@@ -21,6 +22,7 @@ def main():
 	parser = parseArgs.handle(parser)
 	args = parser.parse_args()
 	print(args)
+	quality.mainPlot(args.fq)
 
 if __name__ == "__main__":
     main()

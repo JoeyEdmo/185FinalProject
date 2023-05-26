@@ -31,12 +31,12 @@ If the install was successful, typing `ffqc --help` should show a useful message
 The basic usage of `ffqc` is:
 
 ```
-mypileup [-d output directory] [other options] in.fq
+ffqc [-d output directory] [other options] in.fq
 ```
 
 To run `ffqc` on a test example (using files in this repo):
 ```
-mypileup -d output files/NA12878_child_1.fq
+ffqc -d output files/NA12878_child_1.fq
 ```
 
 This should produce a png file named outputmainfig.png in the output directory plotting quality per position.

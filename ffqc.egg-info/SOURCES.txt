@@ -1,0 +1,12 @@
+README.md
+setup.py
+ffqc/__init__.py
+ffqc/ffqc.py
+ffqc/parseArgs.py
+ffqc/quality.py
+ffqc/version.py
+ffqc.egg-info/PKG-INFO
+ffqc.egg-info/SOURCES.txt
+ffqc.egg-info/dependency_links.txt
+ffqc.egg-info/entry_points.txt
+ffqc.egg-info/top_level.txt

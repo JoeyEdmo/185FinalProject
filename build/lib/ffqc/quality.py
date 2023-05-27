@@ -39,7 +39,7 @@ def mainPlot(df, args):
     plt.axhspan(redstart,redend, facecolor='red', alpha=.1, zorder = -1)
     plt.axhspan(redend,yellowend, facecolor='yellow', alpha=.1, zorder = -1)
     plt.axhspan(yellowend,greenend, facecolor='green', alpha=.1, zorder = -1)
-    plt.savefig(directory + 'mainfig.png', facecolor=plot.get_facecolor(), edgecolor='none')
+    plt.savefig(directory + '/' + 'mainfig.png', facecolor=plot.get_facecolor(), edgecolor='none')
 
 
 

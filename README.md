@@ -50,7 +50,7 @@ then it should generate an html file. You can open this file in a browser, and o
 
 # ffqc options
 
-The only required input to `ffqc` is a fastqc file. However, the -d directory is recommended unless you only want to output to a local directory named output. 
+The only required input to `ffqc` is a fastqc file. However, the -d directory is recommended unless you want everything dumped to your current working directory. 
 
 * `-d DIRECTORY`, `--directory DIRECTORY`: directory all images will output to.
 

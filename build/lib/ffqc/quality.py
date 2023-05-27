@@ -39,7 +39,7 @@ def mainPlot(df, args):
     plt.axhspan(redstart,redend, facecolor='red', alpha=.1, zorder = -1)
     plt.axhspan(redend,yellowend, facecolor='yellow', alpha=.1, zorder = -1)
     plt.axhspan(yellowend,greenend, facecolor='green', alpha=.1, zorder = -1)
-    plt.savefig(directory + '/' + 'mainfig.png', facecolor=plot.get_facecolor(), edgecolor='none')
+    plt.savefig(directory + 'mainfig.png', facecolor=plot.get_facecolor(), edgecolor='none')
 
 
 
@@ -62,24 +62,15 @@ def dfScores(IN_FILE):
 
 
 def handleWrite(args):
-    print(args)
     dir = args.directory
     specified = False
     if(not dir):
-        print("you did not specify an out directory.",
-            'Should the program use directory named output to store output files?',
-            'this directory will be created if it does not currently exist.')
-        userinfo = input("[y/n]:")
-        if userinfo not in ['y', 'Y', 'yes']:
-            print('will not use directory, exiting program. ')
-            exit()
-        print('will use "output" as a directory. ')
-        dir = 'output'
-        if(not os.path.exists(dir)):
-            os.mkdir(dir)
+        dir = ''
     elif(not os.path.exists(dir)):
         print('output directory does not exist. check and see if ' + dir + ' is the correct directory.')
         exit()
+    else:
+        dir += '/'
     return dir
         
 

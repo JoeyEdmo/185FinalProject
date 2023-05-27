@@ -22,7 +22,6 @@ def main():
 	#push extra code into it's own file.
 	parser = parseArgs.handle(parser)
 	args = parser.parse_args()
-	print(args)
 	df = quality.dfScores(args.fq) #get df of all reads
 	quality.mainPlot(df, args)#use df to plot main plot
 

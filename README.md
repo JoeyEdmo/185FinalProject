@@ -34,7 +34,12 @@ make sure to add the directory in the quotes to your path. This can be done by r
 ```
 PATH+=':<directory location>'
 ```
-You can add this line to your .bashrc file if you want PATH to always include this directory. Also don't forget the ':' in the command.
+You can add this line to your .bashrc file if you want PATH to always include this directory. Also don't forget the ':' in the command. For example, to fix the error above I would put
+```
+PATH+=':/home/jedmonston/.local/bin'
+```
+
+and the place where my scripts download should now be on my PATH.
 
 If the install was successful, typing `ffqc --help` should show a useful message.
 

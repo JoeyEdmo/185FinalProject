@@ -24,6 +24,17 @@ pip install --user Bio numpy pandas seaborn
 python setup.py install --user
 ```
 
+Another Note: if you get a warning like this while installing:
+```
+WARNING: The scripts bio and fasta_filter.py are installed in '/home/jedmonston/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+```
+
+make sure to add the directory in the quotes to your path. This can be done by running 
+```
+PATH+=':<directory location>'
+```
+
 If the install was successful, typing `ffqc --help` should show a useful message.
 
 # Basic usage

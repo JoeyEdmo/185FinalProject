@@ -34,7 +34,7 @@ make sure to add the directory in the quotes to your path. This can be done by r
 ```
 PATH+=':<directory location>'
 ```
-You can add this line to your .bashrc file if you want PATH to always include this directory. ALso don't forget the ':' in the command.
+You can add this line to your .bashrc file if you want PATH to always include this directory. Also don't forget the ':' in the command.
 
 If the install was successful, typing `ffqc --help` should show a useful message.
 

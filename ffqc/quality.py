@@ -12,6 +12,18 @@ import os
 
 
 def mainPlot(df, args):
+    
+    '''
+    this takes in a df of the fastq data organized and makes the main plot plotting position vs quality score boxplot.
+
+    ===========params==========
+    df: DataFrame with columns as read position and rows as quality of read at that position
+    
+    ===========result==========
+    
+    outputs graph to specified -d directory or working directory if none 
+    '''
+    
     modval = 5 #TODO: make variable based on num bases
     redstart = 0
     redend = 20
@@ -44,6 +56,14 @@ def mainPlot(df, args):
 
 
 def dfScores(IN_FILE):
+    '''
+    ===========params==========
+    IN_FILE: fq file we read from
+    
+    ===========return==========
+        
+    df:  our data frame where each column is a position and the rows are just given reads
+    '''
     qscores = {}
     for record in SeqIO.parse(IN_FILE, "fastq"):
         qualities = record.letter_annotations["phred_quality"]
@@ -60,8 +80,12 @@ def dfScores(IN_FILE):
 
 #=========================== Helpers for this file only ==============================
 
-
 def handleWrite(args):
+    
+    '''
+    makes sure your specified directory exists and if so makes our output go there
+    '''
+    
     dir = args.directory
     specified = False
     if(not dir):
@@ -76,6 +100,10 @@ def handleWrite(args):
 
 
 def storeScores(dictionary, sequence, qualities):
+    '''
+    helps create the df storing our scores/positions by building a dictionary
+    '''
+    
     for n,c in enumerate(sequence):
         try:
             dictionary[n].append(qualities[n])

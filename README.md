@@ -51,7 +51,7 @@ To run `ffqc` on a test example (using files in this repo):
 ffqc -d output test_files/NA12878_child_1.fq
 ```
 
-This should produce a png file named outputmainfig.png in the output directory plotting quality per position.
+This should produce a png file named mainfig.png in the output directory plotting quality per position. It is currently super large, this will be fixed in the future.
 
 To compare to output of `fastqc`, run:
 ```

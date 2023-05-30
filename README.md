@@ -34,6 +34,7 @@ make sure to add the directory in the quotes to your path. This can be done by r
 ```
 PATH+=':<directory location>'
 ```
+You can add this line to your .bashrc file if you want PATH to always include this directory. ALso don't forget the ':' in the command.
 
 If the install was successful, typing `ffqc --help` should show a useful message.
 
@@ -47,14 +48,14 @@ ffqc [-d output directory] [other options] in.fq
 
 To run `ffqc` on a test example (using files in this repo):
 ```
-ffqc -d output files/NA12878_child_1.fq
+ffqc -d output test_files/NA12878_child_1.fq
 ```
 
 This should produce a png file named outputmainfig.png in the output directory plotting quality per position.
 
 To compare to output of `fastqc`, run:
 ```
-fastqc files/NA12878_child_1.fq
+fastqc test_files/NA12878_child_1.fq
 ```
 
 then it should generate an html file. You can open this file in a browser, and our figure should be similar to the top figure of fastqc's output.

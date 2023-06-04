@@ -1,5 +1,5 @@
-Filename : NA12878_child_1.fq
-totalSequences : 52037
+Filename : truncSRR.fastq
+totalSequences : 10000
 Sequences Flagged as Poor Quality : 0
-SequenceLength : 101
-GC Ratio : 34
+SequenceLength : 150
+GC Ratio : 52

@@ -33,7 +33,7 @@ def fullReadQualityDistribution(df, args):
     valuedf = valuedf.reindex(sorted(valuedf.columns), axis=1)
     valuedf
     plt.plot(valuedf.columns, valuedf.iloc[0])
-    plt.title('Number of bases with Quality Score', fontsize=20)
+    plt.title('Number of reads with Average Quality Score', fontsize=20)
     plt.xlabel('Average Quality Per Read', fontsize=15)
     plt.ylabel('number of Reads', fontsize=15)
     plt.savefig(writefile)

@@ -1,0 +1,5 @@
+Filename : NA12878_child_1.fq
+totalSequences : 52037
+Sequences Flagged as Poor Quality : 0
+SequenceLength : 101
+GC Ratio : 34

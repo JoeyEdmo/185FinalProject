@@ -23,8 +23,10 @@ def main():
     #push extra code into it's own file.
     parser = parseArgs.handle(parser)
     args = parser.parse_args()
-    df = quality.dfScores(args.fq) #get df of all reads
+    df = quality.dfScores(args.fq, args) #get df of all reads
     quality.mainPlot(df, args)#use df to plot main plot
+    quality.qualityDistribution(df, args)#use df to plot main plot
+    quality.fullReadQualityDistribution(df, args)#use df to plot main plot
 
 if __name__ == "__main__":
     main()

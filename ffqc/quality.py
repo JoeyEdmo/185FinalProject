@@ -3,11 +3,74 @@ import pandas as pd
 import seaborn as sns
 from Bio import SeqIO
 import matplotlib.pyplot as plt
+from PIL import Image
 import os
 
+def fullReadQualityDistribution(df, args):
+    
+    '''
+    this takes in a df of the fastq data organized and makes the main plot plotting the avg read quality for a read to read
+    ===========params==========
+    df: DataFrame with columns as read position and rows as quality of read at that position
+    args: the arguments given to the program
+    ===========result==========
+    
+    outputs graph to specified -d directory or working directory if none 
+    '''
+    directory = handleWrite(args)
+    writefile = directory + 'readScoreDistribution.png'
+    plt.figure(figsize=(13,7))
+    plt.rcdefaults()
+    plt.clf()
+    valuecount = {0:0}
+    for reads in df.values:
+        key =int(sum(reads)/len(reads))
+        if(valuecount.get(key) == None):
+            valuecount[key] = 1
+        else:
+            valuecount[key] = valuecount[key] + 1
+    valuedf = pd.DataFrame([valuecount])
+    valuedf = valuedf.reindex(sorted(valuedf.columns), axis=1)
+    valuedf
+    plt.plot(valuedf.columns, valuedf.iloc[0])
+    plt.title('Number of bases with Quality Score', fontsize=20)
+    plt.xlabel('Average Quality Per Read', fontsize=15)
+    plt.ylabel('number of Reads', fontsize=15)
+    plt.savefig(writefile)
 
 
-
+def qualityDistribution(df, args):
+    
+    '''
+    this takes in a df of the fastq data organized and makes the quality score and number of reads
+    assigned to it on a graph.
+    ===========params==========
+    df: DataFrame with columns as read position and rows as quality of read at that position
+    args: the arguments given to the program
+    ===========result==========
+    
+    outputs graph to specified -d directory or working directory if none 
+    '''
+    directory = handleWrite(args)
+    writefile = directory + 'baseScoreDistribution.png'
+    plt.figure(figsize=(13,7))
+    plt.rcdefaults()
+    plt.clf()
+    valuecount = {0:0}
+    for reads in df.values:
+        for baseval in reads:
+            if(valuecount.get(baseval) == None):
+                valuecount[baseval] = 1
+            else:
+                valuecount[baseval] = valuecount[baseval] + 1
+    valuedf = pd.DataFrame([valuecount])
+    valuedf = valuedf.reindex(sorted(valuedf.columns), axis=1)
+    valuedf
+    plt.plot(valuedf.columns, valuedf.iloc[0])
+    plt.title('Number of bases with Quality Score', fontsize=20)
+    plt.xlabel('Quality Score', fontsize=15)
+    plt.ylabel('Number of Bases', fontsize=15)
+    plt.savefig(writefile)
 
 
 
@@ -18,13 +81,13 @@ def mainPlot(df, args):
 
     ===========params==========
     df: DataFrame with columns as read position and rows as quality of read at that position
-    
+    args: the arguments given to the program
     ===========result==========
     
     outputs graph to specified -d directory or working directory if none 
     '''
     
-    modval = 5 #TODO: make variable based on num bases
+    modval = 5 
     redstart = 0
     redend = 20
     yellowend = 32
@@ -33,6 +96,7 @@ def mainPlot(df, args):
     vsize = 50
     
     directory = handleWrite(args)
+    writefile = directory + 'mainfig.png'
     
     
     sns.set(font_scale = 4)
@@ -51,11 +115,13 @@ def mainPlot(df, args):
     plt.axhspan(redstart,redend, facecolor='red', alpha=.1, zorder = -1)
     plt.axhspan(redend,yellowend, facecolor='yellow', alpha=.1, zorder = -1)
     plt.axhspan(yellowend,greenend, facecolor='green', alpha=.1, zorder = -1)
-    plt.savefig(directory + 'mainfig.png', facecolor=plot.get_facecolor(), edgecolor='none')
+    plt.savefig(writefile, facecolor=plot.get_facecolor(), edgecolor='none')
+    im = Image.open(writefile)
+    im.thumbnail((1600,1600), Image.ANTIALIAS)
+    im.save(writefile)
 
 
-
-def dfScores(IN_FILE):
+def dfScores(IN_FILE, args):
     '''
     ===========params==========
     IN_FILE: fq file we read from
@@ -63,12 +129,41 @@ def dfScores(IN_FILE):
     ===========return==========
         
     df:  our data frame where each column is a position and the rows are just given reads
+    
+    ===========effect============
+    outputs a txt file that contains basic stats on our data.
+    
     '''
+    records = list(SeqIO.parse(IN_FILE, "fastq"))
+    totalseqs = len(records)
+    filename = IN_FILE
+    sequenceLength = len(records[0].seq)
+    numGC=0
+    numtotal=0
+    numBadRead = 0
     qscores = {}
-    for record in SeqIO.parse(IN_FILE, "fastq"):
+    for record in records:
         qualities = record.letter_annotations["phred_quality"]
         qscores = storeScores(qscores, record.seq, qualities)
-
+        s = str(record.seq)
+        numGC += s.count('G') + s.count('C') 
+        numtotal += len(s)
+        if(sum(qualities)/len(qualities) < 5):
+            numBadRead +=1
+    ratioGC = int(numGC/numtotal * 100)
+    
+    dir = handleWrite(args)
+    writeloc = dir + 'summary.txt'
+    
+    f = open(writeloc, 'w')
+    broken = filename.split('/')
+    f.write('Filename : '+ broken[len(broken)-1] + "\n")
+    f.write('totalSequences : '+  str(totalseqs) +  "\n")
+    f.write('Sequences Flagged as Poor Quality : '+  str(numBadRead) +  "\n")
+    f.write('SequenceLength : '+  str(sequenceLength) +  "\n")
+    f.write('GC Ratio : '+  str(ratioGC) +  "\n")
+    f.close()
+        
     df = pd.DataFrame(qscores)
     return df
 

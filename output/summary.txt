@@ -1,4 +1,4 @@
-Filename : truncSRR.fastq
+Filename : truncSR.fastq
 totalSequences : 10000
 Sequences Flagged as Poor Quality : 0
 SequenceLength : 150

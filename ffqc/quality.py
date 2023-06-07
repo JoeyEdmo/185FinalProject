@@ -102,7 +102,7 @@ def mainPlot(df, args):
     sns.set(font_scale = 4)
     plt.figure(figsize=(hsize,vsize))
     plot = sns.boxplot(data=df, showfliers = False)
-    plt.title('FlimsyQC', fontsize=100)
+    plt.title('ffqc', fontsize=100)
     plt.xlabel('Base Position', fontsize=80)
     plt.ylabel('Quality Score', fontsize=80)
     plot.set_ylim(ymin=0)

@@ -46,6 +46,10 @@ fastqc test_files/NA12878_child_1.fq
 
 then it should generate an html file. You can open this file in a browser, and our figure should be similar to the top figure of fastqc's output.
 
+# Code format
+
+All source code files are stored in the ffqc folder.
+
 # ffqc options
 
 The only required input to `ffqc` is a fastqc file. However, the -d directory is recommended unless you want everything dumped to your current working directory. 

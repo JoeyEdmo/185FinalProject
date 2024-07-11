@@ -56,7 +56,7 @@ The only required input to `ffqc` is a fastqc file. However, the -d directory is
 
 # File format
 
-The current output file format is a png of a graph. In the future there should be more than 1.
+The current input is a fastq formatted DNA file. The current output file format is several pngs of a graphs.
 
 # Contributors
 

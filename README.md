@@ -1,8 +1,6 @@
 # ffqc
 
-(Work in progress!)
-
-This is a mock version of FastQC called ffqc. It currently just makes the main graph after handling input.
+This is a version of FastQC called ffqc. It will generate quality graphs when given a fastq file as input.
 
 # Install instructions
 
@@ -23,23 +21,6 @@ Note: if you do not have root access, you can run the commands above with additi
 pip install --user Bio numpy pandas seaborn
 python setup.py install --user
 ```
-
-Another Note: if you get a warning like this while installing:
-```
-WARNING: The scripts bio and fasta_filter.py are installed in '/home/jedmonston/.local/bin' which is not on PATH.
-  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
-```
-
-make sure to add the directory in the quotes to your path. This can be done by running 
-```
-PATH+=':<directory location>'
-```
-You can add this line to your .bashrc file if you want PATH to always include this directory. Also don't forget the ':' in the command. For example, to fix the error above I would put
-```
-PATH+=':/home/jedmonston/.local/bin'
-```
-
-and the place where my scripts download should now be on my PATH.
 
 If the install was successful, typing `ffqc --help` should show a useful message.
 
